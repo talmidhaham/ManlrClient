@@ -1,0 +1,15 @@
+<div>
+<h1>Itur Tikim</h1>
+<select (change)="SelectedChange()" [(ngModel)]="SelectedTTsevet">
+  <!-- <option value="-1" selected>select please</option> -->
+  <option [ngValue]="item" *ngFor="let item of userTsvatim">{{item.name}}</option>
+  </select>
+
+
+
+
+<mat-card>
+    <app-tik   *ngFor="let item of SelectedTTsevet.tikim"  [user_rights]="SelectedTTsevet.user_rights"   [tik]="item" ></app-tik>
+</mat-card>
+
+</div>
