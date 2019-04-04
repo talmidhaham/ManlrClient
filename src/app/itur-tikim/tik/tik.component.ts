@@ -1,5 +1,9 @@
 import { Component, OnInit ,Input} from '@angular/core';
 import { UsersServiceService } from "../../users-service.service";
+import 'rxjs/add/operator/map'
+import 'rxjs/add/observable/of'
+import { Observable } from 'rxjs/Observable';
+import { observable } from 'rxjs';
 
 @Component({
   selector: 'app-tik',
@@ -15,7 +19,7 @@ export class TikComponent implements OnInit {
   user : any
 
   constructor(private usersServiceService : UsersServiceService) {
-    this.user = this.usersServiceService.getUserProfile();
+    this.usersServiceService.getUserProfile().subscribe(x => this.user = JSON.parse(x));
    }
 
   ngOnInit() {
@@ -23,6 +27,8 @@ export class TikComponent implements OnInit {
 
   getIf()
   {
+    console.log(this.user_rights);
+
     var res = this.user_rights.filter(x => x == "rt")
     if (res.length > 0) {
       return true
@@ -47,6 +53,7 @@ export class TikComponent implements OnInit {
 
   getDis()
   {
+
     var res2 = this.user_rights.filter(x => x == "os")
 
     if (res2.length > 0) {
