@@ -44,12 +44,13 @@ export class UsersServiceService {
      // debugger;
     console.log("getUserProfile");
     if (this.user !== undefined ) {
-      return Observable.of(this.user).map(o => JSON.stringify(o));
+      return Observable.of(this.user);//.map(o => JSON.stringify(o));
     }
     else {
       var Myheaders = new HttpHeaders({
         "Authorization": "Bearer " + this.oauthService.getAccessToken()
     });
+    console.log(this.oauthService.getAccessToken());
     const requestOptions = {                                                                                                                                                                                 
       headers: Myheaders
     };

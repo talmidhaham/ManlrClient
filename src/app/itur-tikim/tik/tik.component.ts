@@ -12,14 +12,16 @@ import { observable } from 'rxjs';
 })
 export class TikComponent implements OnInit {
 
-  @Input() tik: any;
+  @Input() 
+  tik: any;
 
-  @Input() user_rights: any;
+  @Input() 
+  user_rights: any;
 
   user : any
 
   constructor(private usersServiceService : UsersServiceService) {
-    this.usersServiceService.getUserProfile().subscribe(x => this.user = JSON.parse(x));
+    this.usersServiceService.getUserProfile().subscribe(x => this.user = x);
    }
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class TikComponent implements OnInit {
 
   getIf()
   {
+    debugger;
     console.log(this.user_rights);
 
     var res = this.user_rights.filter(x => x == "rt")

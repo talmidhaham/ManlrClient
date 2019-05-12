@@ -29,7 +29,8 @@ export class IturTikimComponent implements OnInit {
   constructor(private usersServiceService : UsersServiceService) {
     this.userTsvatim = [];
     console.log("call user rights");
-    var st1 = this.usersServiceService.getUserProfile().subscribe(data => {st1 = data.rights;
+  var st1 ;
+    this.usersServiceService.getUserProfile().subscribe(data => {st1 = data.rights;
       var st = st1;
       console.log(st);
       var st2 = JSON.parse(st);
