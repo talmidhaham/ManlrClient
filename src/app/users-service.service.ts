@@ -15,16 +15,16 @@ export class UsersServiceService {
   user : any
 
   constructor(private oauthService: OAuthService,private http: HttpClient) { 
-    var Myheaders = new HttpHeaders({
-      "Authorization": "Bearer " + this.oauthService.getAccessToken()
-  });
-  const requestOptions = {                                                                                                                                                                                 
-    headers: Myheaders
-  };
-      http.get("http://localhost/Ebusit.oidcServer/connect/userinfo",requestOptions)
-      .subscribe(
-        (data) => {this.user = data ; console.log(this.user)} 
-      );
+  //   var Myheaders = new HttpHeaders({
+  //     "Authorization": "Bearer " + this.oauthService.getAccessToken()
+  // });
+  // const requestOptions = {                                                                                                                                                                                 
+  //   headers: Myheaders
+  // };
+  //     http.get("http://localhost/Ebusit.oidcServer/connect/userinfo",requestOptions)
+  //     .subscribe(
+  //       (data) => {this.user = data ; console.log(this.user)} 
+  //     );
 
       // http.get("http://localhost/Ebusit.oidcServer/api/UserProfile",requestOptions)
       // .subscribe(
@@ -37,27 +37,28 @@ export class UsersServiceService {
 
   getUserProfile()
   {
-    if (this.user !== undefined ) {
-      return this.user;
-    }
-
-    //   debugger;
-    // console.log("getUserProfile");
     // if (this.user !== undefined ) {
-    //   return Observable.of(this.user).map(o => JSON.stringify(o));;
+    //   return this.user;
     // }
-    // else {
-    //   var Myheaders = new HttpHeaders({
-    //     "Authorization": "Bearer " + this.oauthService.getAccessToken()
-    // });
-    // const requestOptions = {                                                                                                                                                                                 
-    //   headers: Myheaders
-    // };
-    //    return this.http.get("http://localhost/Ebusit.oidcServer/connect/userinfo",requestOptions)
-    //   .map(x => this.user = x);
 
-    //     return this.user;
-    // }
+     // debugger;
+    console.log("getUserProfile");
+    if (this.user !== undefined ) {
+      return Observable.of(this.user);//.map(o => JSON.stringify(o));
+    }
+    else {
+      var Myheaders = new HttpHeaders({
+        "Authorization": "Bearer " + this.oauthService.getAccessToken()
+    });
+    console.log(this.oauthService.getAccessToken());
+    const requestOptions = {                                                                                                                                                                                 
+      headers: Myheaders
+    };
+       return this.http.get("http://localhost/Ebusit.oidcServer/connect/userinfo",requestOptions)
+      .map(x => this.user = x);
+
+        return this.user;
+    }
   }
 
 
